@@ -6,6 +6,7 @@ extends Area2D
 @export var shape : Shape2D = null : set = update_shape
 @export var color: Color = Color(1,0,0,0.5): set = update_color
 @export var debug: bool = false
+@export var destroyable: bool = false
 
 @export_category("Hitbox Data")
 @export var hitbox_id: int = 0
@@ -19,7 +20,6 @@ extends Area2D
 @export var angle: int = 0
 @export var base_knockback: float = 0.0
 @export_range(0,1) var knockback_scale: float = 0.0
-@export var group: int = 0
 
 @export var parent: CharacterBody2D
 
@@ -32,7 +32,7 @@ var frame = 1
 func _init(_shape: Shape2D = null, _hitbox_id: int = 0, _attack_type: int = 0,
 		_hitbox_priority: int = 0, _frames_active: int = 0, _damage: int = 0,
 		_hit_pause: int = 0, _hit_stun: int = 0, _block_stun: int = 0, _angle: int = 0,
-		_base_knockback: float = 0.0, _knockback_scale: float = 0.0, _group: int = 0):
+		_base_knockback: float = 0.0, _knockback_scale: float = 0.0,):
 	shape = _shape
 	hitbox_id = _hitbox_id
 	attack_type = _attack_type
@@ -45,7 +45,6 @@ func _init(_shape: Shape2D = null, _hitbox_id: int = 0, _attack_type: int = 0,
 	angle = _angle
 	base_knockback = _base_knockback
 	knockback_scale = _knockback_scale
-	group = _group
 
 # Updates the hitbox's collision shape
 func update_shape(newVal):
@@ -88,9 +87,10 @@ func get_launch_vector(launch_angle,force):
 			return Vector2(fx,fy)
 
 func _process(_delta):
-	if Engine.is_editor_hint() or debug:
+	if Engine.is_editor_hint():
 		update_shape(shape)
 		queue_redraw()
+	elif !destroyable: return
 	else:
 		if frame < frames_active:
 			frame += 1
