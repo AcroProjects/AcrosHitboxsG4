@@ -1,4 +1,4 @@
-# Acro's Hitboxes G4 v1.0
+# Acro's Hitboxes G4 v1.0.1
 
 Acro’s Hitboxes G4 aims to streamline the process of generating knockback and damage from collision.  This addon provides custom nodes that allow the user to apply knockback and damage to an object by changing the trajectory and strength of the knockback, allowing the user to visually see the launch angle and strength to reduce the amount of trial and error from traditional knockback methods, collision shapes, and the color of the hitbox.
 
