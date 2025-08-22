@@ -27,7 +27,7 @@ var objects_hit = [false]
 
 var reverse = false
 
-var frame = 1
+var frame = 0
 
 func _init(_shape: Shape2D = null, _hitbox_id: int = 0, _attack_type: int = 0,
 		_hitbox_priority: int = 0, _frames_active: int = 0, _damage: int = 0,
